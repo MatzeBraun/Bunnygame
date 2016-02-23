@@ -86,7 +86,7 @@ public class Hasen {
         {
              Spielfeld[i][j]=".";
              Spielfeld[i][j+1]="H";
-        }
+         }
             }
         }  
    }   
