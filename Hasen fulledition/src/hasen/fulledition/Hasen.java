@@ -35,13 +35,7 @@ public class Hasen {
            }
        }
        while(!FrameAPI.allDead);
-           
-
-    
-    
        }
-       
-        
     
    public static void Spielfeldbauen(String[][]meinArray)
    {
@@ -53,22 +47,23 @@ public class Hasen {
              meinArray[i][j]=".";
             }
         }  
-        
-        meinArray[3][9]=   "H";   
+        meinArray[3][9]=   "F";                                                 //Hasen und Füchse definieren
         meinArray[8][4]=   "H";
         meinArray[5][10]=  "H";
-        meinArray[12][9]=  "H";
-        meinArray[10][8]= "H";
-        meinArray[1][2]=   "H";
-        meinArray[4][7]=   "F";
-        meinArray[12][2]=  "F";
-        meinArray[7][8]=   "F";
+        meinArray[9][9]=   "F";
+        meinArray[10][8]=  "H";
+        meinArray[2][2]=   "H";
+        meinArray[2][4]=   "F";
+        meinArray[10][2]=  "F";
+        meinArray[7][8]=   "H";
+        meinArray[7][10]=  "F";
+        meinArray[9][12]=  "F";
         
    }
-   public static void moveHasen(String[][]Spielfeld)
+  
+   public static void moveHasen(String[][]Spielfeld) 
    {
-          
-       String[][] Speicher = new String[14][14];
+        String[][] Speicher = new String[14][14];
         for(int i=0; i<14; i++)
         {
             for(int j=0; j<14; j++)
@@ -77,17 +72,33 @@ public class Hasen {
             }
         }
                
-         for(int i=0; i<14; i++)
+        for(int i=0; i<14; i++)
         {
              
            for(int j=0;j<14; j++){
             
-             if(Speicher[i][j].equals("H"))
+             if(Speicher[i][j].equals("F"))
         {
              Spielfeld[i][j]=".";
-             Spielfeld[i][j+1]="H";
+             Spielfeld[i][j+1]="F";
          }
+             if(Spielfeld[i][13].equals("F")){
+                  Spielfeld[i][j]=".";
+                  Spielfeld[i][0]="F";
+             }
+              if(Speicher[i][j].equals("H"))
+        {
+             Spielfeld[i][j]=".";
+             Spielfeld[i+1][j+1]="H";
+         }
+             if(Spielfeld[13][j].equals("H")){
+                  Spielfeld[i][j]=".";
+                  Spielfeld[0][j]="H";
+             } if(Spielfeld[i][13].equals("H")){
+                  Spielfeld[i][j]=".";
+                  Spielfeld[i][0]="H";
             }
-        }  
+        }
+        }
    }   
 }
