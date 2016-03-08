@@ -18,31 +18,30 @@ public class Hasen {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)                                        //Hauptausführung
+    {
        String [][] meinArray = new String [14][14];
        Spielfeldbauen(meinArray);
        FrameAPI.initFrame();
        FrameAPI.initString(meinArray.length, meinArray); 
        FrameAPI.setPlayground();
        
-       do {
-           if(FrameAPI.newRound) {
+       do{
+           if(FrameAPI.newRound) 
+           {
            moveHasen(meinArray);
            FrameAPI.initString(meinArray.length, meinArray);
            FrameAPI.setPlayground();  
-           
-           
            }
-       }
-       while(!FrameAPI.allDead);
-       }
+         }
+       while(!FrameAPI.allDead);                                                // Bis alle Hasen tot sind
+    }
     
-   public static void Spielfeldbauen(String[][]meinArray)
+   public static void Spielfeldbauen(String[][]meinArray)                       // Spielfeld wird aufgebaut
    {
-            for(int i=0; i<meinArray.length; i++)
+        for(int i=0; i<meinArray.length; i++)
         {
-             
-           for(int j=0; j<meinArray.length; j++)
+          for(int j=0; j<meinArray.length; j++)
             {
              meinArray[i][j]=".";
             }
@@ -58,8 +57,8 @@ public class Hasen {
         meinArray[7][8]=   "H";
         meinArray[7][10]=  "F";
         meinArray[9][12]=  "F";
-        
-   }
+    }
+   
   
    public static void moveHasen(String[][]Spielfeld) 
    {
@@ -70,35 +69,39 @@ public class Hasen {
             {
             Speicher[i][j]= Spielfeld[i][j];
             }
-        }
+        }                                                                        //externes Spielfeld wird aufgebaut
                
         for(int i=0; i<14; i++)
         {
              
-           for(int j=0;j<14; j++){
-            
-             if(Speicher[i][j].equals("F"))
-        {
-             Spielfeld[i][j]=".";
-             Spielfeld[i][j+1]="F";
-         }
-             if(Spielfeld[i][13].equals("F")){
-                  Spielfeld[i][j]=".";
-                  Spielfeld[i][0]="F";
-             }
-              if(Speicher[i][j].equals("H"))
-        {
-             Spielfeld[i][j]=".";
-             Spielfeld[i+1][j+1]="H";
-         }
-             if(Spielfeld[13][j].equals("H")){
-                  Spielfeld[i][j]=".";
-                  Spielfeld[0][j]="H";
-             } if(Spielfeld[i][13].equals("H")){
-                  Spielfeld[i][j]=".";
-                  Spielfeld[i][0]="H";
+           for(int j=0;j<14; j++)
+           {
+            if(Speicher[i][j].equals("F"))                                      //Bewegung vom Fuchs nach rechts
+               {
+                Spielfeld[i][j]=".";
+                Spielfeld[i][j+1]="F";
+               }
+            if(Spielfeld[i][13].equals("F"))                                    //Fuchs wird vom Ende des Feldes zum anderen gespawnt
+               {
+                Spielfeld[i][j]=".";
+                Spielfeld[i][0]="F";
+               }
+            if(Speicher[i][j].equals("H"))                                      //Bewegung von Hasen nach rechts und nach unten
+               {  
+                Spielfeld[i][j]=".";
+                Spielfeld[i+1][j+1]="H";
+               }
+            if(Spielfeld[13][j].equals("H"))                                    //Hase wird am Ende des Feldes zum anderen gespawnt
+               {
+                Spielfeld[i][j]=".";
+                Spielfeld[0][j]="H";
+               } 
+            if(Spielfeld[i][13].equals("H"))                                    //Hase wird am Ende des Feldes zum anderen gespawnt
+               {
+                Spielfeld[i][j]=".";
+                Spielfeld[i][0]="H";
+               }
             }
-        }
         }
    }   
 }
